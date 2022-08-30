@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/ibrahimimg/Operationalize-a-Machine-Learning-Microservice-API.svg?style=svg)](https://github.com/ibrahimimg/Operationalize-a-Machine-Learning-Microservice-API)
+[![CircleCI](https://circleci.com/gh/ibrahimimg/Operationalize-a-Machine-Learning-Microservice-API.svg?style=svg)](https://circleci.com/gh/circleci/circleci-docs)
 
 ## Project Overview
 
