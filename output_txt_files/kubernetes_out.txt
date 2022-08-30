@@ -1,1 +1,11 @@
-<paste log output from Kubernetes-mediated prediction, here>
+ubuntu@ip-172-31-82-134:~/Operationalize-a-Machine-Learning-Microservice-API$ ./run_kubernetes.sh
+pod/ml-microservice-api created
+NAME                  READY   STATUS              RESTARTS   AGE
+ml-microservice-api   0/1     ContainerCreating   0          0s
+error: unable to forward port because pod is not running. Current status=Pending
+ubuntu@ip-172-31-82-134:~/Operationalize-a-Machine-Learning-Microservice-API$ ./run_kubernetes.sh
+Error from server (AlreadyExists): pods "ml-microservice-api" already exists
+NAME                  READY   STATUS    RESTARTS   AGE
+ml-microservice-api   1/1     Running   0          15s
+Forwarding from 0.0.0.0:8000 -> 80
+Handling connection for 8000
