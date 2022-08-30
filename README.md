@@ -1,4 +1,4 @@
-<include a CircleCI status badge, here>
+[![CircleCI](https://circleci.com/gh/ibrahimimg/Operationalize-a-Machine-Learning-Microservice-API.svg?style=svg)](https://github.com/ibrahimimg/Operationalize-a-Machine-Learning-Microservice-API)
 
 ## Project Overview
 
@@ -23,6 +23,26 @@ You can find a detailed [project rubric, here](https://review.udacity.com/#!/rub
 
 ---
 
+## Project Directory Structure
+
+![directory-structure](./screenshots/dir.png)
+
+| Name |  Description    |
+|------|-----------------|
+|.     | the root folder which contains folders, source files|
+|.circleci   | this folder contains a config file that will be used by circleci|
+|model_data| This folder contains a sklearn model that has been trained to predict housing prices in Boston |
+|output_txt_files | this folder contains a terminal output of run_docker.sh and run_kubernetes|
+|make_predication.sh  | used to get the prediction's result through API|
+|app.py | flask application for API|
+|Dockerfile | Dockerfile file with instructions to build a Docker image |
+|Makefile |  Makefile defines a set of tasks to be executed, such as setup, install etc|
+|README.md| project documentation
+|requirements.txt|list of python libraries required by this project, to be installed with pip|
+|run_docker.sh  | bash script to build and run docker automatically|
+|run_kubernetes.sh  | This script run docker with kubernetes |
+|upload_docker.sh  | This script tags and uploads an image to Docker Hub|
+
 ## Setup the Environment
 
 * Create a virtualenv with Python 3.7 and activate it. Refer to this link for help on specifying the Python version in the virtualenv. 
@@ -42,9 +62,44 @@ source .devops/bin/activate
 2. Run in Docker:  `./run_docker.sh`
 3. Run in Kubernetes:  `./run_kubernetes.sh`
 
+![run-with-docker.sh](./screenshots/task2-run-container.png)
+
 ### Kubernetes Steps
 
 * Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
+
+    1. You will need to use Docker to build and upload a containerized application. If you already have this installed and created a docker account, you may skip this step.
+
+
+    2. You’ll need to [create a free docker account](https://hub.docker.com/signup) , where you’ll choose a unique username and link your email to a docker account. Your username is your unique docker ID.
+
+    3. To install the latest version of docker, choose the Community Edition (CE) for your operating system, on docker’s installation site. It is also recommended that you install the latest, stable release:
+
+    4. After installation, you can verify that you’ve successfully installed docker by printing its version in your terminal
+    
+            docker --version
+
 * Create Flask app in Container
-* Run via kubectl
+
+    In order to run a containerized application, you’ll need to build and run the docker image that you defined in the Dockerfile, and then you should be able to test your application, locally, by having the containerized application accept some input data and produce a prediction about housing prices. 
+    
+        run_docker.sh
+
+* Setup and Configure Kubernetes locally
+
+    To deploy this application using kubectl, open and complete the file, [run_kubernetes.sh](run_kubernetes.sh):
+
+    The steps will be somewhat similar to what you did in both run_docker.sh and upload_docker.sh but specific to kubernetes clusters. Within [run_kubernetes.sh](run_kubernetes.sh), complete the following steps:
+
+    1. Define a dockerpath which will be “/path”, this should be the same name as your uploaded repository (the same as in upload_docker.sh)
+    2. Run the docker container with kubectl; you’ll have to specify the container and the port
+    3. List the kubernetes pods
+    4. Forward the container port to a host port, using the same ports as before
+
+        After completing the code, call the script [./run_kubernetes.sh](./run_kubernetes.sh). This assumes you have a local cluster configured and running. This script should create a pod with a name you specify and you may get an initial output that looks as follows, with a cluster and status
+
+        ![run-kubernetes.sh](./screenshots/task6-deploy-with-kubernetes.png)
+
+Prediction Result with Kubernetes
+
+![prediction](./screenshots/prediction-result-with-kub.png)
